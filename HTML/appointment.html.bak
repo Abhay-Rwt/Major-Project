@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LegalConnect - Book Appointment</title>
+	<link rel="stylesheet" href="../src/output.css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+	<style>
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 100;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu a, .dropdown-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background-color: #f4f4f4;
+        }
+
+        .services-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-services:hover .services-dropdown {
+            display: block;
+        }
+        .services-dropdown a {
+            display: block;
+            padding: 10px 16px;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .services-dropdown a:hover {
+            background-color: #f4f4f4;
+            color: #2563eb;
+        }
+
+        /* Tab styles */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Payment method styles */
+        .payment-method {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method.selected {
+            border-color: #22c55e;
+            background-color: #f0fdf4;
+        }
+	</style>
+</head>
+
+<body class="bg-gray-100 overflow-x-hidden">
+	<!-- Header with Transparent Background -->
+	<header class="fixed w-full z-50 transition-all duration-300 bg-blue-900" id="main-header">
+		<div class="container mx-auto flex justify-between items-center p-4">
+			<!-- Logo -->
+			<div class="flex items-center space-x-4">
+				<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md">
+					<span class="text-blue-600 text-lg font-bold">LC</span>
+				</div>
+				<p class="text-2xl font-bold tracking-wide">
+					<span class="text-white">Legal</span><span class="text-green-400">Connect</span>
+				</p>
+			</div>
+
+			<!-- Navigation -->
+			<nav class="hidden md:flex space-x-8 text-lg font-medium text-white">
+				<a href="home.html" class="hover:text-green-400 transition">Home</a>
+				<div class="relative nav-services">
+					<a href="#services" class="hover:text-green-400 transition">Services</a>
+					<div class="services-dropdown">
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+							</svg>
+							Legal Consultation
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+							Document Verification
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+							</svg>
+							Dispute Resolution
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+							</svg>
+							Contract Review
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+							</svg>
+							Legal Drafting
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+							</svg>
+							Intellectual Property
+						</a>
+					</div>
+				</div>
+				<a href="professionals.html" class="hover:text-green-400 transition">Professionals</a>
+				<a href="about.html" class="hover:text-green-400 transition">About</a>
+			</nav>
+
+			<!-- Profile Section -->
+            <div class="relative">
+                <div id="profile-dropdown-toggle" class="cursor-pointer">
+                    <img id="profile-image" src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                </div>
+                
+                <div id="profile-dropdown" class="dropdown-menu absolute right-0 mt-2 bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b flex items-center space-x-4">
+                        <img id="dropdown-profile-image" src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">John Doe</h4>
+                            <p class="text-sm text-gray-500">john.doe@example.com</p>
+                        </div>
+                    </div>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">My Profile</a>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">Account Settings</a>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">Billing</a>
+                    <button id="image-upload-btn" class="hover:bg-gray-100 px-4 py-2 block w-full text-left">
+                        Change Profile Picture
+                    </button>
+                    <input type="file" id="profile-image-upload" accept="image/*" class="hidden">
+                    <a href="landing.html" class="hover:bg-gray-100 px-4 py-2 block text-red-500">Logout</a>
+                </div>
+            </div>
+
+			<!-- Mobile Menu Toggle -->
+			<button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
+		</div>
+	</header>
+
+	<!-- Mobile Menu -->
+	<div class="fixed w-full bg-blue-900 text-white z-40 hidden" id="mobile-menu">
+        <div class="container mx-auto p-4">
+            <!-- Profile Section for Mobile -->
+            <div class="flex items-center space-x-4 mb-4 pb-4 border-b border-blue-700">
+                <img id="mobile-profile-image" src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                    <h4 class="font-semibold">John Doe</h4>
+                    <p class="text-sm text-gray-300">john.doe@example.com</p>
+                </div>
+            </div>
+            <a href="home.html" class="block py-2 border-b border-blue-700">Home</a>
+            <a href="#services" class="block py-2 border-b border-blue-700">Services</a>
+            <a href="professionals.html" class="block py-2 border-b border-blue-700">Professionals</a>
+            <a href="about.html" class="block py-2 border-b border-blue-700">About</a>
+            <div class="mt-4 space-y-2">
+                <a href="#" class="block py-2">My Profile</a>
+                <a href="#" class="block py-2">Account Settings</a>
+                <a href="#" class="block py-2">Billing</a>
+                <button id="mobile-image-upload-btn" class="block py-2 w-full text-left">Change Profile Picture</button>
+                <input type="file" id="mobile-profile-image-upload" accept="image/*" class="hidden">
+                <a href="landing.html" class="block py-2 text-red-400">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Booking Main Content -->
+    <main class="pt-24 pb-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 bg-blue-50">
+                        <h2 class="text-2xl font-semibold text-blue-900">Book an Appointment</h2>
+                        <p class="text-gray-600 mt-1">Schedule a consultation with <span id="provider-name" class="font-semibold text-blue-600 text-lg"></span></p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <form id="appointment-form" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Date</label>
+                                <input type="date" id="appointment-date" name="date" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Time</label>
+                                <input type="time" id="appointment-time" name="time" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Type of Consultation</label>
+                                <select id="consultation-type" name="type" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    <option value="">Select a type</option>
+                                    <option value="initial">Initial Consultation</option>
+                                    <option value="follow-up">Follow-up Meeting</option>
+                                    <option value="urgent">Urgent Consultation</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Brief Description of Your Case</label>
+                                <textarea id="case-description" name="description" rows="4" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="Please provide a brief description of your legal matter..."></textarea>
+                            </div>
+                            
+                            <div class="flex justify-end space-x-4 mt-8">
+                                <button type="button" onclick="window.history.back()"
+                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                                    Cancel
+                                </button>
+                                <button type="submit"
+                                    class="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium text-lg shadow-md hover:shadow-lg transition-all">
+                                    Book Appointment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+		<div class="container mx-auto px-6">
+			<div class="grid md:grid-cols-4 gap-8">
+				<div>
+					<h3 class="text-xl font-semibold mb-4">LegalConnect</h3>
+					<p class="text-gray-400">Bridging the gap between legal professionals and clients.</p>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+					<ul class="space-y-2">
+						<li><a href="home.html" class="hover:text-green-400 transition">Home</a></li>
+						<li><a href="#" class="hover:text-green-400 transition">Services</a></li>
+						<li><a href="about.html" class="hover:text-green-400 transition">About</a></li>
+						<li><a href="contactsupport.html" class="hover:text-green-400 transition">Contact</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Legal</h3>
+					<ul class="space-y-2">
+						<li><a href="privacy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
+						<li><a href="privacy.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Connect</h3>
+					<div class="flex space-x-4">
+						<a href="https://www.facebook.com/" class="hover:text-green-400 transition">Facebook</a>
+						<a href="https://x.com/?lang=en" class="hover:text-green-400 transition">Twitter</a>
+						<a href="https://www.linkedin.com/login" class="hover:text-green-400 transition">LinkedIn</a>
+					</div>
+				</div>
+			</div>
+			<div class="text-center text-gray-500 mt-8 pt-4 border-t border-gray-700">
+				&copy; 2025 LegalConnect. All rights reserved.
+			</div>
+		</div>
+	</footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4" data-aos="zoom-in">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mt-4">Appointment Scheduled!</h3>
+                <div class="mt-4">
+                    <p class="text-gray-600">Your appointment with <span id="modal-lawyer-name" class="font-medium">Rahul Sharma</span> has been confirmed for <span id="modal-appointment-time" class="font-medium">April 5, 2025 at 10:00 AM</span>.</p>
+                    <p class="text-gray-600 mt-2">A confirmation has been sent to your email.</p>
+                    <p id="modal-message" class="text-orange-600 mt-3 hidden"></p>
+                </div>
+                <div class="mt-8">
+                    <button id="close-modal" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Profile dropdown toggle
+        const profileToggle = document.getElementById('profile-dropdown-toggle');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        
+        profileToggle.addEventListener('click', () => {
+            profileDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileToggle.contains(e.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // Profile image upload functionality
+        const profileImageUpload = document.getElementById('profile-image-upload');
+        const imageUploadBtn = document.getElementById('image-upload-btn');
+        const profileImage = document.getElementById('profile-image');
+        const dropdownProfileImage = document.getElementById('dropdown-profile-image');
+        const mobileProfileImage = document.getElementById('mobile-profile-image');
+        const mobileImageUploadBtn = document.getElementById('mobile-image-upload-btn');
+        const mobileProfileImageUpload = document.getElementById('mobile-profile-image-upload');
+
+        imageUploadBtn.addEventListener('click', () => {
+            profileImageUpload.click();
+        });
+
+        mobileImageUploadBtn.addEventListener('click', () => {
+            mobileProfileImageUpload.click();
+        });
+
+        profileImageUpload.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = (event) => {
+                    profileImage.src = event.target.result;
+                    dropdownProfileImage.src = event.target.result;
+                    mobileProfileImage.src = event.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+        mobileProfileImageUpload.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = (event) => {
+                    profileImage.src = event.target.result;
+                    dropdownProfileImage.src = event.target.result;
+                    mobileProfileImage.src = event.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Set minimum date for appointment (today)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointment-date').setAttribute('min', today);
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+                header.classList.remove('bg-blue-900');
+                header.classList.add('bg-blue-800');
+            } else {
+                header.classList.remove('shadow-lg');
+                header.classList.remove('bg-blue-800');
+                header.classList.add('bg-blue-900');
+            }
+        });
+
+        // Get provider information from sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM Content Loaded");
+            
+            // Get provider information from sessionStorage
+            const providerName = sessionStorage.getItem('selectedProviderName');
+            const providerId = sessionStorage.getItem('selectedProviderId');
+            
+            console.log("Provider Name:", providerName);
+            console.log("Provider ID:", providerId);
+            
+            // Display provider name
+            const providerNameElement = document.getElementById('provider-name');
+            
+            if (providerNameElement) {
+                if (providerName) {
+                    providerNameElement.textContent = providerName;
+                    console.log("Provider name displayed:", providerName);
+                    
+                    // If we have a provider name, handle the appointment form setup
+                    setupAppointmentForm(providerId, providerName);
+                } else {
+                    console.log("No provider selected, redirecting to professionals page");
+                    alert("Please select a professional before booking an appointment.");
+                    window.location.href = 'professionals.html';
+                }
+            } else {
+                console.error("Provider name element not found");
+            }
+        });
+        
+        // Setup appointment form and handlers
+        function setupAppointmentForm(providerId, providerName) {
+            // Handle form submission
+            const appointmentForm = document.getElementById('appointment-form');
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log("Form submitted");
+                    
+                    // Get form values
+                    const date = document.getElementById('appointment-date').value;
+                    const time = document.getElementById('appointment-time').value;
+                    const type = document.getElementById('consultation-type').value;
+                    const description = document.getElementById('case-description').value;
+                    
+                    console.log("Form values:", { date, time, type, description });
+                    
+                    // Show loading state
+                    const submitButton = appointmentForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<span class="animate-pulse">Processing...</span>';
+                    
+                    // Prepare the appointment data
+                    const appointmentData = {
+                        providerId: providerId,
+                        providerName: providerName,
+                        clientId: sessionStorage.getItem('userId') || 'anonymous-' + Date.now(),
+                        clientName: sessionStorage.getItem('userName') || 'Anonymous Client',
+                        date: date,
+                        time: time,
+                        type: type,
+                        description: description
+                    };
+
+                    console.log("Sending appointment data to API:", appointmentData);
+                    
+                    // Send appointment data to backend API
+                    fetch('../backend/api/create-appointment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(appointmentData)
+                    })
+                    .then(response => {
+                        console.log("API response status:", response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("API response data:", data);
+                        
+                        // Reset button state
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = 'Book Appointment';
+                        
+                        if (data.success) {
+                            // Show success modal
+                            const modalLawyerName = document.getElementById('modal-lawyer-name');
+                            const modalAppointmentTime = document.getElementById('modal-appointment-time');
+                            const successModal = document.getElementById('success-modal');
+                            
+                            if (modalLawyerName && modalAppointmentTime && successModal) {
+                                modalLawyerName.textContent = providerName;
+                                modalAppointmentTime.textContent = `${date} at ${time}`;
+                                successModal.classList.remove('hidden');
+                                console.log("Success modal displayed");
+                                
+                                // Remove any fallback message
+                                const modalMessage = document.getElementById('modal-message');
+                                if (modalMessage) {
+                                    modalMessage.classList.add('hidden');
+                                    modalMessage.innerHTML = '';
+                                }
+                            } else {
+                                console.error("Modal elements not found");
+                            }
+                            
+                            // Reset form
+                            appointmentForm.reset();
+                            
+                            // Clear session storage
+                            sessionStorage.removeItem('selectedProviderId');
+                            sessionStorage.removeItem('selectedProviderName');
+                            console.log("Session storage cleared");
+                        } else {
+                            // Show error message
+                            alert('Error: ' + (data.message || 'Failed to book appointment'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error booking appointment:", error);
+                        
+                        // Reset button state
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = 'Book Appointment';
+                        
+                        // Try localStorage fallback
+                        const useFallback = confirm('Connection to server failed. Would you like to save the appointment locally instead?');
+                        
+                        if (useFallback) {
+                            try {
+                                // Create appointment object using localStorage
+                                const appointment = {
+                                    id: Date.now(), // Unique ID for the appointment
+                                    providerId: providerId,
+                                    providerName: providerName,
+                                    clientId: sessionStorage.getItem('userId') || 'anonymous-' + Date.now(),
+                                    clientName: sessionStorage.getItem('userName') || 'Anonymous Client',
+                                    date: date,
+                                    time: time,
+                                    type: type,
+                                    description: description,
+                                    status: 'pending',
+                                    createdAt: new Date().toISOString()
+                                };
+                                
+                                // Get existing appointments from localStorage
+                                const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+                                
+                                // Add new appointment
+                                appointments.push(appointment);
+                                
+                                // Save back to localStorage
+                                localStorage.setItem('appointments', JSON.stringify(appointments));
+                                console.log("Appointment saved to localStorage as fallback");
+                                
+                                // Show success modal
+                                const modalLawyerName = document.getElementById('modal-lawyer-name');
+                                const modalAppointmentTime = document.getElementById('modal-appointment-time');
+                                const successModal = document.getElementById('success-modal');
+                                
+                                if (modalLawyerName && modalAppointmentTime && successModal) {
+                                    modalLawyerName.textContent = providerName;
+                                    modalAppointmentTime.textContent = `${date} at ${time}`;
+                                    successModal.classList.remove('hidden');
+                                    console.log("Success modal displayed (using localStorage fallback)");
+                                    
+                                    // Add notification that fallback was used
+                                    const modalMessage = document.getElementById('modal-message');
+                                    if (modalMessage) {
+                                        modalMessage.innerHTML = "<strong>Note:</strong> Using local storage fallback due to server connection issues.";
+                                        modalMessage.classList.remove('hidden');
+                                    }
+                                }
+                                
+                                // Reset form
+                                appointmentForm.reset();
+                                
+                                // Clear session storage
+                                sessionStorage.removeItem('selectedProviderId');
+                                sessionStorage.removeItem('selectedProviderName');
+                            } catch (fallbackError) {
+                                console.error("Fallback also failed:", fallbackError);
+                                alert('Failed to book appointment: ' + error.message);
+                            }
+                        } else {
+                            alert('Failed to book appointment: ' + error.message);
+                        }
+                    });
+                });
+            } else {
+                console.error("Appointment form not found");
+            }
+            
+            // Close modal and redirect
+            const closeModal = document.getElementById('close-modal');
+            const successModal = document.getElementById('success-modal');
+            
+            if (closeModal && successModal) {
+                closeModal.addEventListener('click', function() {
+                    successModal.classList.add('hidden');
+                    window.location.href = 'home.html';
+                    console.log("Modal closed, redirecting to home page");
+                });
+            } else {
+                console.error("Modal close elements not found");
+            }
+        }
+    </script>
+</body>
+</html>

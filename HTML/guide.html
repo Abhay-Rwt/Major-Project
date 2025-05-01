@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Legal Rights & Protections - LegalConnect</title>
+	<link rel="stylesheet" href="/src/output.css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+	<style>
+        /* Additional styles for services dropdown */
+        .services-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 50;
+            padding: 16px 0;
+        }
+        .nav-services:hover .services-dropdown {
+            display: block;
+        }
+        .services-dropdown a {
+            display: block;
+            padding: 10px 16px;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .services-dropdown a:hover {
+            background-color: #f4f4f4;
+            color: #2563eb;
+        }
+
+        /* Legal Guides Specific Styles */
+        .guide-section {
+            background-color: rgba(37, 99, 235, 0.05);
+            border-left: 4px solid #2563eb;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+        }
+        .guide-section h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        .guide-section p {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        /* Additional styles for profile dropdown */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 100;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu a, .dropdown-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background-color: #f4f4f4;
+        }
+		.dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 100;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu a, .dropdown-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background-color: #f4f4f4;
+        }
+	</style>
+</head>
+
+<body class="bg-gray-100 overflow-x-hidden">
+	<!-- Header with Transparent Background -->
+	<header class="fixed w-full z-50 transition-all duration-300 bg-blue-900 bg-opacity-90 shadow-md" id="main-header">
+		<div class="container mx-auto flex justify-between items-center p-4">
+			<!-- Logo -->
+			<div class="flex items-center space-x-4">
+				<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md">
+					<span class="text-blue-600 text-lg font-bold">LC</span>
+				</div>
+				<p class="text-2xl font-bold tracking-wide">
+					<span class="text-white">Legal</span><span class="text-green-400">Connect</span>
+				</p>
+			</div>
+
+			<!-- Navigation -->
+			<nav class="hidden md:flex space-x-8 text-lg font-medium text-white">
+				<a href="home.html" class="hover:text-green-400 transition">Home</a>
+				<div class="relative nav-services">
+					<a href="#services" class="hover:text-green-400 transition">Services</a>
+					<div class="services-dropdown">
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+							</svg>
+							Legal Consultation
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+							Document Verification
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+							</svg>
+							Dispute Resolution
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+							</svg>
+							Contract Review
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+							</svg>
+							Legal Drafting
+						</a>
+						<a href="#" class="flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+							</svg>
+							Intellectual Property
+						</a>
+					</div>
+				</div>
+				<a href="#professionals" class="hover:text-green-400 transition">Professionals</a>
+				<a href="about.html" class="hover:text-green-400 transition">About</a>
+			</nav>
+
+			<!-- Profile Section -->
+			<div class="relative">
+                <div id="profile-dropdown-toggle" class="cursor-pointer">
+                    <img id="profile-image" src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                </div>
+                
+                <div id="profile-dropdown" class="dropdown-menu absolute right-0 mt-2 bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b flex items-center space-x-4">
+                        <img id="dropdown-profile-image" src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">John Doe</h4>
+                            <p class="text-sm text-gray-500">john.doe@example.com</p>
+                        </div>
+                    </div>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">My Profile</a>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">Account Settings</a>
+                    <a href="#" class="hover:bg-gray-100 px-4 py-2 block">Billing</a>
+                    <button id="image-upload-btn" class="hover:bg-gray-100 px-4 py-2 block w-full text-left">
+                        Change Profile Picture
+                    </button>
+                    <input type="file" id="profile-image-upload" accept="image/*" class="hidden">
+                    <a href="landing.html" class="hover:bg-gray-100 px-4 py-2 block text-red-500">Logout</a>
+                </div>
+            </div>
+
+			<!-- Mobile Menu Toggle -->
+			<button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
+		</div>
+	</header>
+
+	<!-- Hero Section for Legal Rights -->
+	<main>
+		<section class="relative pt-32 pb-20 bg-gradient-to-r from-blue-900 to-green-600 text-white">
+			<div class="container mx-auto px-6">
+				<h1 class="text-5xl font-extrabold mb-6" data-aos="fade-right">
+					Comprehensive Legal Rights Guide
+				</h1>
+				<p class="text-xl text-gray-200 max-w-3xl" data-aos="fade-right" data-aos-delay="200">
+					In-depth exploration of fundamental rights, legal protections, and the constitutional framework that safeguards individual liberties and social justice.
+				</p>
+			</div>
+		</section>
+
+		<!-- Detailed Legal Rights Explanation -->
+		<section class="py-16 bg-white">
+			<div class="container mx-auto px-6">
+				<div class="grid md:grid-cols-2 gap-12">
+					<div>
+						<div class="guide-section" data-aos="fade-up">
+							<h3 class="text-2xl font-semibold mb-4">Right to Equality: Deeper Understanding</h3>
+							<p>The Right to Equality is a cornerstone of democratic societies. It encompasses:</p>
+							<ul class="list-disc pl-6 mt-2 text-gray-700">
+								<li>Prohibition of discrimination based on race, gender, religion, or social status</li>
+								<li>Equal protection under the law for all citizens</li>
+								<li>Equal opportunity in employment, education, and social spheres</li>
+								<li>Equal access to public services and institutions</li>
+							</ul>
+							<p class="mt-4">This right ensures that no individual is treated differently or subjected to unfair treatment based on inherent characteristics.</p>
+						</div>
+
+						<div class="guide-section" data-aos="fade-up" data-aos-delay="200">
+							<h3 class="text-2xl font-semibold mb-4">Freedom of Expression: Comprehensive View</h3>
+							<p>A fundamental democratic right that protects:</p>
+							<ul class="list-disc pl-6 mt-2 text-gray-700">
+								<li>The right to express personal opinions freely</li>
+								<li>Protection of artistic, literary, and political expression</li>
+								<li>Media freedom and journalistic independence</li>
+								<li>Academic and intellectual discourse without fear of persecution</li>
+							</ul>
+							<p class="mt-4">While protecting free speech, legal frameworks also maintain reasonable restrictions to prevent hate speech, incitement to violence, and threats to national security.</p>
+						</div>
+					</div>
+
+					<div>
+						<div class="guide-section" data-aos="fade-up">
+							<h3 class="text-2xl font-semibold mb-4">Right to Education: Comprehensive Breakdown</h3>
+							<p>More than just academic learning, the Right to Education includes:</p>
+							<ul class="list-disc pl-6 mt-2 text-gray-700">
+								<li>Free and compulsory education for children</li>
+								<li>Inclusive education regardless of socioeconomic background</li>
+								<li>Skill development and vocational training</li>
+								<li>Equal educational opportunities for marginalized communities</li>
+							</ul>
+							<p class="mt-4">This right is crucial for personal development, social mobility, and creating an equitable society.</p>
+						</div>
+
+						<div class="guide-section" data-aos="fade-up" data-aos-delay="200">
+							<h3 class="text-2xl font-semibold mb-4">Right to Privacy: Modern Interpretations</h3>
+							<p>In the digital age, the Right to Privacy extends to:</p>
+							<ul class="list-disc pl-6 mt-2 text-gray-700">
+								<li>Protection of personal data and digital information</li>
+								<li>Control over personal communications</li>
+								<li>Protection against unauthorized surveillance</li>
+								<li>Right to be forgotten in digital platforms</li>
+							</ul>
+							<p class="mt-4">This right balances individual privacy with necessary legal and security concerns.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Key Legal Protections Section -->
+		<section class="py-16 bg-gray-50">
+			<div class="container mx-auto px-6">
+				<h2 class="text-4xl font-bold text-blue-900 text-center mb-12" data-aos="fade-up">
+					Critical Legal Protections in Modern Society
+				</h2>
+
+				<div class="grid md:grid-cols-3 gap-8">
+					<div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition" data-aos="zoom-in">
+						<div class="text-center">
+							<div class="mx-auto w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+								</svg>
+							</div>
+							<h3 class="text-2xl font-semibold text-blue-600 mb-4">
+								Workplace Protections
+							</h3>
+							<p class="text-gray-600">
+								Comprehensive legal framework ensuring fair treatment, safe working conditions, and protection against workplace discrimination and harassment.
+							</p>
+						</div>
+					</div>
+
+					<div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="200">
+						<div class="text-center">
+							<div class="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2a2 2 0 002-2v-3a2 2 0 00-2-2h-2v-1a4 4 0 00-8 0v1H6a2 2 0 00-2 2v3a2 2 0 002 2h2v-1a4 4 0 008 0zM7 11V7a5 5 0 0110 0v4" />
+								</svg>
+							</div>
+							<h3 class="text-2xl font-semibold text-green-600 mb-4">
+								Consumer Rights
+							</h3>
+							<p class="text-gray-600">
+								Legal mechanisms protecting consumers from unfair trade practices, ensuring product safety, and providing redressal for grievances.
+							</p>
+						</div>
+					</div>
+
+					<div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="400">
+						<div class="text-center">
+							<div class="mx-auto w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+								</svg>
+							</div>
+							<h3 class="text-2xl font-semibold text-purple-600 mb-4">
+								Child Protection Laws
+							</h3>
+							<p class="text-gray-600">
+								Comprehensive legal safeguards ensuring child welfare, preventing exploitation, and protecting fundamental rights of minors.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer remains the same as previous version -->
+	<footer class="bg-gray-900 text-white py-12">
+		<div class="container mx-auto px-6">
+			<div class="grid md:grid-cols-4 gap-8">
+				<div>
+					<h3 class="text-xl font-semibold mb-4">LegalConnect</h3>
+					<p class="text-gray-400">Bridging the gap between legal professionals and clients.</p>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+					<ul class="space-y-2">
+						<li><a href="home.html" class="hover:text-green-400 transition">Home</a></li>
+						<li><a href="#services" class="hover:text-green-400 transition">Services</a></li>
+						<li><a href="about.html" class="hover:text-green-400 transition">About</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Legal</h3>
+					<ul class="space-y-2">
+						<li><a href="privacy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
+						<li><a href="privacy.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Connect</h3>
+					<div class="flex space-x-4">
+						<a href="https://www.facebook.com/" class="hover:text-green-400 transition">Facebook</a>
+							<a href="https://x.com/?lang=en" class="hover:text-green-400 transition">Twitter</a>
+							<a href="https://www.linkedin.com/login" class="hover:text-green-400 transition">LinkedIn</a>
+					</div>
+				</div>
+			</div>
+			<div class="text-center text-gray-500 mt-8 pt-4 border-t border-gray-700">
+				&copy; 2025 LegalConnect. All rights reserved.
+			</div>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init({ duration: 1000, once: true });
+		
+
+		// Header background change on scroll
+		window.addEventListener('scroll', function() {
+			const header = document.getElementById('main-header');
+			if (window.scrollY > 50) {
+				header.classList.add('bg-blue-900', 'bg-opacity-90', 'shadow-md');
+			} else {
+				header.classList.remove('bg-blue-900', 'bg-opacity-90', 'shadow-md');
+			}
+		});
+
+		// Mobile menu toggle
+		document.getElementById('menu-toggle').addEventListener('click', function() {
+			const mobileMenu = document.getElementById('mobile-menu');
+			mobileMenu.classList.toggle('hidden');
+			
+		});
+
+		// Profile Dropdown Toggle
+        const profileDropdownToggle = document.getElementById('profile-dropdown-toggle');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        
+        profileDropdownToggle.addEventListener('click', () => {
+            profileDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!profileDropdownToggle.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // Image Upload Functionality
+        const imageUploadBtn = document.getElementById('image-upload-btn');
+        const mobileImageUploadBtn = document.getElementById('mobile-image-upload-btn');
+        const fileInput = document.getElementById('profile-image-upload');
+        const mobileFileInput = document.getElementById('mobile-profile-image-upload');
+        const profileImages = [
+            document.getElementById('profile-image'),
+            document.getElementById('dropdown-profile-image'),
+            document.getElementById('mobile-profile-image')
+        ];
+
+        function handleImageUpload(input) {
+            input.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        profileImages.forEach(img => {
+                            img.src = e.target.result;
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Add click event to trigger file input
+        imageUploadBtn.addEventListener('click', () => fileInput.click());
+        mobileImageUploadBtn.addEventListener('click', () => mobileFileInput.click());
+
+        // Handle file upload
+        handleImageUpload(fileInput);
+        handleImageUpload(mobileFileInput);
+
+	</script>
+</body>
+</html>
